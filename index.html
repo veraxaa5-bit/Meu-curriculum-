@@ -3,162 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Currículo</title>
+    <title>Currículo | Veronilson Ramalho</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --bg: #f0f2f5;
-            --card: #ffffff;
-            --text: #333;
+            --primary: #1e3a8a; /* Azul Marinho Profissional */
+            --accent: #3b82f6;
+            --bg: #f8fafc;
+            --text: #334155;
+            --white: #ffffff;
         }
 
-        /* Classe para Modo Escuro */
-        .dark-mode {
-            --bg: #111827;
-            --card: #1f2937;
-            --text: #f3f4f6;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 20px;
+            line-height: 1.6;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: background 0.3s, color 0.3s; }
-
-        body { background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-
-        /* Botão de Tema */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-            border: none;
-            background: var(--primary);
-            color: white;
-            font-size: 20px;
-            z-index: 1000;
-        }
-
-        .cv-card {
-            background: var(--card);
-            width: 100%;
-            max-width: 800px;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-top: 8px solid var(--primary);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s forwards;
-        }
-
-        @keyframes fadeIn {
+        /* Animação suave de entrada */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .header { text-align: center; margin-bottom: 30px; }
-        
-        .profile-img { 
-            width: 130px; height: 130px; border-radius: 50%; 
-            object-fit: cover; border: 3px solid var(--primary); 
-            margin-bottom: 15px; background: #e5e7eb;
-            transition: transform 0.3s;
+        .cv-wrapper {
+            background: var(--white);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
         }
-        .profile-img:hover { transform: rotate(5deg) scale(1.1); }
 
-        h2 { color: var(--primary); border-bottom: 2px solid #e5e7eb; margin: 25px 0 10px; padding-bottom: 5px; }
-        
-        .section { margin-bottom: 20px; opacity: 0; transform: translateX(-20px); transition: 0.6s; }
-        .section.visible { opacity: 1; transform: translateX(0); }
-
-        .btn-certificados {
-            display: block;
+        /* Topo com Identidade */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
             text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .profile-img:hover { border-color: var(--accent); transform: scale(1.05); }
+
+        header h1 { font-size: 2rem; letter-spacing: -0.5px; margin-bottom: 5px; }
+        .contact-bar { font-size: 0.9rem; opacity: 0.9; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        /* Conteúdo Principal */
+        main { padding: 40px; }
+
+        section { margin-bottom: 35px; }
+
+        h2 { 
+            font-size: 1.1rem; 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
+
+        p { font-size: 1rem; color: #475569; }
+
+        /* Habilidades Dinâmicas mas Discretas */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+
+        .skill-item:hover { 
+            background: var(--white); 
+            border-color: var(--accent); 
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Botão de Ação */
+        .footer-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-main {
+            display: inline-block;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 15px;
+            padding: 14px 28px;
             border-radius: 8px;
-            font-weight: bold;
-            margin-top: 30px;
+            font-weight: 600;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
-        .btn-certificados:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-        #backToTop {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background: var(--text);
-            color: var(--card);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+        .btn-main:hover { background: var(--accent); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+        @media (max-width: 600px) {
+            main { padding: 25px; }
+            header { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    <div class="cv-wrapper">
+        <header>
+            <img src="ru.jpg" alt="Veronilson Ramalho" class="profile-img" onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'">
+            <h1>Veronilson Ramalho</h1>
+            <div class="contact-bar">
+                <span>📍 Tarauacá, Acre</span>
+                <span>•</span>
+                <span>✉️ veronilsonramalho8@gmail.com</span>
+            </div>
+        </header>
 
-    <div class="cv-card" id="card">
-        <div class="header">
-            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Perfil" class="profile-img">
-            <h1>Veronilson</h1>
-            <p>📍 Tarauaca, acre |</p>
-            📧 veronilsonramalho8@gmail.com
-        </div>
+        <main>
+            <section>
+                <h2>Objetivo</h2>
+                <p>Recentemente formado no Ensino Médio, busco ingressar no mercado de trabalho para aplicar minhas habilidades de organização e aprendizado rápido, visando contribuir positivamente com os resultados da empresa.</p>
+            </section>
 
-        <div class="section">
-            <h2>Objetivo</h2>
-            <p>Recém-formado no Ensino Médio, buscando oportunidade de emprego em qualqur área afim de adquirir experiência.</p>
-        </div>
+            <section>
+                <h2>Formação</h2>
+                <p><strong>Ensino Médio Completo</strong><br>Conclusão em 2025</p>
+            </section>
 
-        <div class="section">
-            <h2>Habilidades</h2>
-            <p>⚡ HTML5 & CSS3 (basico) </p>
-            <p>🤝 Trabalho em Equipe </p>| 
-        </div>
+            <section>
+                <h2>Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">HTML5 Básico</div>
+                    <div class="skill-item">CSS3 Básico</div>
+                    <div class="skill-item">Informática</div>
+                    <div class="skill-item">Internet & E-mail</div>
+                </div>
+            </section>
 
-        <a href="certificados.html" class="btn-certificados">🎓 VER CERTIFICADOS (Página 2)</a>
+            <section>
+                <h2>Soft Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Trabalho em Equipe</div>
+                    <div class="skill-item">Responsabilidade</div>
+                    <div class="skill-item">Pontualidade</div>
+                    <div class="skill-item">Proatividade</div>
+                </div>
+            </section>
+
+            <div class="footer-action">
+                <a href="certificados.html" class="btn-main">🎓 Ver Certificados Acadêmicos</a>
+            </div>
+        </main>
     </div>
 
-    <button id="backToTop" onclick="scrollToTop()">↑ Topo</button>
-
-    <script>
-        // Função Modo Escuro
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        // Função Scroll Reveal (Aparecer ao rolar)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Botão Voltar ao Topo
-        window.onscroll = function() {
-            let btn = document.getElementById("backToTop");
-            if (document.documentElement.scrollTop > 200) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        };
-
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo | Veronilson Ramalho</title>
+    <style>
+        /* CONFIGURAÇÕES DE CORES CLEAN */
+        :root {
+            --bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --accent: #2563eb;
+            --line: #eeeeee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+        body { background: var(--bg); color: var(--text-dark); line-height: 1.6; padding: 60px 20px; }
+
+        .container { max-width: 700px; margin: auto; }
+
+        /* CABEÇALHO DIRETO AO PONTO */
+        header { text-align: center; margin-bottom: 50px; }
+        
+        .profile-img { 
+            width: 120px; height: 120px; border-radius: 50%; 
+            object-fit: cover; filter: grayscale(20%);
+            margin-bottom: 20px; border: 1px solid var(--line);
+        }
+
+        h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .contact { font-size: 14px; color: var(--text-light); }
+
+        /* SEÇÕES ORGANIZADAS */
+        section { margin-bottom: 40px; }
+
+        h2 { 
+            font-size: 13px; text-transform: uppercase; letter-spacing: 2px; 
+            color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid var(--line);
+            padding-bottom: 5px;
+        }
+
+        p, li { font-size: 15px; color: var(--text-dark); }
+        
+        ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
+        li::before { content: "•"; color: var(--accent); font-weight: bold; display: inline-block; width: 15px; }
+
+        /* BOTÃO DISCRETO */
+        .btn-secondary {
+            display: inline-block; margin-top: 20px; font-size: 14px;
+            color: var(--text-light); text-decoration: none;
+            padding: 8px 0; border-bottom: 1px solid var(--text-light);
+            transition: 0.3s;
+        }
+        .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+        @media print { .btn-secondary { display: none; } body { padding: 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="ru.jpg" alt="Veronilson Ramalho" class="profile-img" onerror="this.style.display='none'">
+            <h1>Veronilson Ramalho</h1>
+            <div class="contact">
+                Tarauacá, Acre | veronilsonramalho8@gmail.com
+            </div>
+        </header>
+
+        <section>
+            <h2>Objetivo</h2>
+            <p>Jovem recém-formado em busca da primeira oportunidade profissional. Foco em contribuir com dinamismo, pontualidade e dedicação, visando o crescimento mútuo dentro da organização.</p>
+        </section>
+
+        <section>
+            <h2>Formação</h2>
+            <p><strong>Ensino Médio Completo</strong><br>Conclusão: 2025</p>
+        </section>
+
+        <section>
+            <h2>Habilidades Técnicas</h2>
+            <ul>
+                <li>HTML5 & CSS3 Básicos</li>
+                <li>Informática Básica</li>
+                <li>Internet e E-mail</li>
+                <li>Sistemas Operacionais</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Competências</h2>
+            <ul>
+                <li>Trabalho em Equipe</li>
+                <li>Responsabilidade</li>
+                <li>Pontualidade</li>
+                <li>Proatividade</li>
+            </ul>
+        </section>
+
+        <footer>
+            <a href="certificados.html" class="btn-secondary">Visualizar Certificados Acadêmicos →</a>
+        </footer>
+    </div>
+
+</body>
+</html>
+
