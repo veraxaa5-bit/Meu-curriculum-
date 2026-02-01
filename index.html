@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Currículo Dinâmico</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --text: #333;
+        }
+
+        /* Classe para Modo Escuro */
+        .dark-mode {
+            --bg: #111827;
+            --card: #1f2937;
+            --text: #f3f4f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: background 0.3s, color 0.3s; }
+
+        body { background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 20px;
+            z-index: 1000;
+        }
+
+        .cv-card {
+            background: var(--card);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header { text-align: center; margin-bottom: 30px; }
+        
+        .profile-img { 
+            width: 130px; height: 130px; border-radius: 50%; 
+            object-fit: cover; border: 3px solid var(--primary); 
+            margin-bottom: 15px; background: #e5e7eb;
+            transition: transform 0.3s;
+        }
+        .profile-img:hover { transform: rotate(5deg) scale(1.1); }
+
+        h2 { color: var(--primary); border-bottom: 2px solid #e5e7eb; margin: 25px 0 10px; padding-bottom: 5px; }
+        
+        .section { margin-bottom: 20px; opacity: 0; transform: translateX(-20px); transition: 0.6s; }
+        .section.visible { opacity: 1; transform: translateX(0); }
+
+        .btn-certificados {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-certificados:hover { filter: brightness(1.2); transform: scale(1.02); }
+
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: var(--text);
+            color: var(--card);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="cv-card" id="card">
+        <div class="header">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Perfil" class="profile-img">
+            <h1>Veronilson</h1>
+            <p>📍 Tarauaca, acre | 📧 veronilsonramalho8@gmail.com</p>
+        </div>
+
+        <div class="section">
+            <h2>Objetivo</h2>
+            <p>Recém-formado no Ensino Médio, buscando transformar curiosidade em código e ingressar na faculdade.</p>
+        </div>
+
+        <div class="section">
+            <h2>Habilidades</h2>
+            <p>⚡ HTML5 & CSS3 (basico) | 🤝 Trabalho em Equipe</p>
+        </div>
+
+        <a href="certificados.html" class="btn-certificados">🎓 VER CERTIFICADOS (Página 2)</a>
+    </div>
+
+    <button id="backToTop" onclick="scrollToTop()">↑ Topo</button>
+
+    <script>
+        // Função Modo Escuro
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Função Scroll Reveal (Aparecer ao rolar)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Botão Voltar ao Topo
+        window.onscroll = function() {
+            let btn = document.getElementById("backToTop");
+            if (document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>

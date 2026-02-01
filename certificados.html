@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Certificados | Galeria Dinâmica</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1000px; margin: auto; }
+
+        /* Botão de Voltar com animação */
+        .voltar { 
+            display: inline-block;
+            color: var(--accent); 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+        .voltar:hover { transform: translateX(-5px); }
+
+        h1 { 
+            text-align: center; 
+            margin-bottom: 50px; 
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Grid Dinâmico */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card do Certificado com Efeito 3D */
+        .cert-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .cert-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: var(--accent);
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 180px;
+            background: #334155; /* Cor de fundo enquanto não tem imagem */
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cert-img:hover { filter: brightness(1.2); }
+
+        h3 { margin-bottom: 8px; color: var(--accent); }
+        p { font-size: 0.9rem; color: #94a3b8; }
+
+        /* Overlay para ver imagem grande (Simples) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="voltar">← Voltar para o Currículo</a>
+        <h1>Minhas Conquistas</h1>
+
+        <div class="galeria">
+            <div class="cert-card">
+                <img src="https://via.placeholder.com/400x250/334155/f8fafc?text=Certificado+1" class="cert-img" onclick="abrirFoto(this.src)">
+                <h3>Ensino Médio</h3>
+                <p>Concluído em 2025</p>
+            </div>
+
+            <div class="cert-card">
+                <img src="https://via.placeholder.com/400x250/334155/f8fafc?text=Certificado+2" class="cert-img" onclick="abrirFoto(this.src)">
+                <h3>Curso de HTML5</h3>
+                <p>Instituição: [Nome]</p>
+            </div>
+
+            <div class="cert-card">
+                <img src="https://via.placeholder.com/400x250/334155/f8fafc?text=Certificado+3" class="cert-img" onclick="abrirFoto(this.src)">
+                <h3>Curso de CSS3</h3>
+                <p>Instituição: [Nome]</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="this.style.display='none'">
+        <img id="imgModal" style="max-width: 90%; max-height: 80%; border-radius: 10px;">
+    </div>
+
+    <script>
+        // Animação de entrada dos cards ao rolar
+        const cards = document.querySelectorAll('.cert-card');
+        
+        const revealCards = () => {
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, index * 150); // Faz os certificados aparecerem um por um
+            });
+        };
+
+        // Inicia a animação assim que a página carrega
+        window.onload = revealCards;
+
+        // Função para ampliar a foto do certificado
+        function abrirFoto(src) {
+            const modal = document.getElementById('modal');
+            const img = document.getElementById('imgModal');
+            modal.style.display = 'flex';
+            img.src = src;
+        }
+    </script>
+</body>
+</html>
