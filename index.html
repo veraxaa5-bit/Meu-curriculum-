@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo | Veronilson Ramalho</title>
+    <title>Currículo | Veronilson O. Ramalho</title>
     <style>
         :root {
-            --primary: #1e3a8a; /* Azul Marinho Profissional */
+            --primary: #1e3a8a; 
             --accent: #3b82f6;
             --bg: #f8fafc;
             --text: #334155;
@@ -24,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* Animação suave de entrada */
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -35,37 +34,35 @@
             width: 100%;
             max-width: 800px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             animation: slideIn 0.6s ease-out;
         }
 
-        /* Topo com Identidade */
         header {
             background: var(--primary);
             color: white;
-            padding: 40px;
+            padding: 45px 20px;
             text-align: center;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
             border: 4px solid rgba(255,255,255,0.2);
             object-fit: cover;
             margin-bottom: 15px;
             transition: 0.3s;
+            background: white;
         }
 
         .profile-img:hover { border-color: var(--accent); transform: scale(1.05); }
 
-        header h1 { font-size: 2rem; letter-spacing: -0.5px; margin-bottom: 5px; }
-        .contact-bar { font-size: 0.9rem; opacity: 0.9; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        header h1 { font-size: 2.2rem; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .contact-bar { font-size: 0.95rem; opacity: 0.9; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
-        /* Conteúdo Principal */
         main { padding: 40px; }
-
         section { margin-bottom: 35px; }
 
         h2 { 
@@ -73,7 +70,7 @@
             color: var(--primary); 
             text-transform: uppercase; 
             letter-spacing: 1px; 
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -81,9 +78,9 @@
 
         h2::after { content: ""; height: 2px; background: #e2e8f0; flex: 1; }
 
-        p { font-size: 1rem; color: #475569; }
+        .edu-item { margin-bottom: 10px; }
+        .edu-item strong { color: #1e293b; display: block; font-size: 1.05rem; }
 
-        /* Habilidades Dinâmicas mas Discretas */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -93,7 +90,7 @@
         .skill-item {
             background: #f1f5f9;
             padding: 10px 15px;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 500;
             text-align: center;
@@ -108,28 +105,25 @@
             transform: translateY(-2px);
         }
 
-        /* Botão de Ação */
-        .footer-action {
-            text-align: center;
-            margin-top: 20px;
-        }
+        .footer-action { text-align: center; margin-top: 10px; }
 
         .btn-main {
             display: inline-block;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 8px;
+            padding: 15px 35px;
+            border-radius: 50px;
             font-weight: 600;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
         }
 
-        .btn-main:hover { background: var(--accent); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .btn-main:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3); }
 
         @media (max-width: 600px) {
             main { padding: 25px; }
-            header { padding: 30px 20px; }
+            header h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -141,7 +135,7 @@
             <h1>Veronilson O. Ramalho</h1>
             <div class="contact-bar">
                 <span>📍 Tarauacá, Acre</span>
-                <span></span>
+                <span>•</span>
                 <span>✉️ veronilsonramalho8@gmail.com</span>
             </div>
         </header>
@@ -149,15 +143,16 @@
         <main>
             <section>
                 <h2>Objetivo</h2>
-                <p>Recentemente formado no Ensino Médio, busco ingressar no mercado de trabalho para aplicar minhas habilidades de organização e aprendizado rápido, visando contribuir positivamente com os resultados da empresa.</p>
+                <p>Recentemente formado, busco ingressar no mercado de trabalho para aplicar meus conhecimentos técnicos e habilidades de organização, visando contribuir positivamente com os resultados da empresa e adquirir experiência profissional.</p>
             </section>
 
             <section>
-                <h2>Formação</h2>
-                <p><strong>Ensino Médio Completo
-                Curso Técnico Integrado ao Ensino Médio em Florestas (Campus Tarauacá)
-                
-                </strong><br>Conclusão em 2025</p>
+                <h2>Formação Acadêmica</h2>
+                <div class="edu-item">
+                    <strong>Técnico em Florestas (Integrado ao Ensino Médio)</strong>
+                    <span>IFAC - Campus Tarauacá</span><br>
+                    <small>Conclusão em 2025</small>
+                </div>
             </section>
 
             <section>
@@ -165,13 +160,13 @@
                 <div class="skills-grid">
                     <div class="skill-item">HTML5 Básico</div>
                     <div class="skill-item">CSS3 Básico</div>
-                    <div class="skill-item">Informática</div>
+                    <div class="skill-item">Informática Básica</div>
                     <div class="skill-item">Internet & E-mail</div>
                 </div>
             </section>
 
             <section>
-                <h2>Soft Skills</h2>
+                <h2>Competências Profissionais</h2>
                 <div class="skills-grid">
                     <div class="skill-item">Trabalho em Equipe</div>
                     <div class="skill-item">Responsabilidade</div>
@@ -188,4 +183,3 @@
 
 </body>
 </html>
-
